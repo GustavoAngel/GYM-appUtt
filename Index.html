@@ -2,212 +2,68 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inventario Heladería</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="styles.css">
-    <script src="app.js" defer></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('service-worker.js');
-        }
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="theme-color" content="#2196F3">
+    <title>Mi PWA</title>
 </head>
 <body>
-    <header id="app-header" style="background: #4DC0B5; color: #fff; display: flex; align-items: center; padding: 12px 16px; font-family: 'Segoe UI', Arial, sans-serif; font-size: 1.5rem; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 101;">
-        <svg style="height: 32px; width: 32px; margin-right: 12px;" viewBox="0 0 36 36" fill="#fff">
-            <circle cx="18" cy="18" r="18" fill="#fff" opacity="0.15"/>
-            <path d="M25 18h-4v10h-4V18h-3v-4h3v-2.5C17 9.57 18.57 8 21.5 8H25v4h-2.5C21.22 12 21 12.22 21 12.5V14h4l-1 4z" fill="#fff"/>
-        </svg>
-        <span id="header-title">Inventario de Productos Terminados</span>
-    </header>
-  
-
-    <section class="pantalla" id="pantalla-productos">
-        <h2>Agregar Producto</h2>
-        <select id="movimiento-categoria-producto">
-            <option value="Helados">Helados</option>
-            <option value="Paletas-crema">Paletas Crema</option>
-            <option value="Paletas-agua">Paletas Agua</option>
-            <option value="Paletas-chica">Paletas Chica</option>
-            <option value="Bebidas">Bebidas</option>
-            <option value="Otros">Otros</option>
-        </select>
-        <input id="producto-nombre" type="text" placeholder="Nombre del producto">
-        <input id="producto-precio-venta" type="text" placeholder="Precio venta">
-        <!-- <input id="producto-nombre" type="text" placeholder="Nombre del producto"> -->
-        <input id="producto-stock" type="number" placeholder="Stock inicial">
-        <button onclick="agregarProducto()">Agregar</button>
-    </section>
-
-    <section class="pantalla" id="pantalla-inventariomain">
-        <h2>Inventario</h2>
-        <div id="lista-productos"></div>
-        <section  >
-            <h2>Realizar Inventario Físico</h2>
-            <button onclick="mostrarPantallaInventario()">Iniciar Inventario</button>
-            <div id="pantalla-inventario" class="tiles-container"></div>
-            <button onclick="finalizarInventario()">Finalizar Inventario</button>
-        </section>
-    </section>
-
-    <section class="pantalla" id="pantalla-movimientos">
-        <h2>Registrar Movimiento</h2>
-        <select id="movimiento-producto"></select>
-        <select id="movimiento-tipo">
-            <option value="entrada">Entrada</option>
-            <option value="salida">Salida</option>
-            <option value="merma">Merma</option>
-        </select>
-        <input id="movimiento-cantidad" type="number" placeholder="Cantidad">
-        <button onclick="registrarMovimiento()">Registrar</button>
-        <div >
-            <h2>Historial de Movimientos</h2    >
-            <div id="historial-movimientos"></div>
+     <div class="week-container">
+        <div class="day-tile" onclick="selectDay('Lunes')">
+            <div class="icon">🌅</div>
+            <div class="day-name">Lunes</div>
+            <div class="day-number">Día 1</div>
         </div>
-    </section>
-
-    <section class="pantalla" id="pantalla-historialmovimientos">
-        <!-- <h2>Historial</h2>
-        <div id="historial-movimientos"></div> -->
-    </section>
-
-    <section id="pantalla-gastos" class="pantalla">
-        <h2>Registro de Gastos</h2>
-        <input type="text" id="gasto-descripcion" placeholder="Descripción del gasto">
-        <input type="number" id="gasto-monto" placeholder="Monto">
-        <select id="gasto-categoria">
-            <option value="Materia Prima">Materia Prima</option>
-            <option value="Servicios">Servicios</option>
-            <option value="Mantenimiento">Mantenimiento</option>
-            <option value="Otros">Otros</option>
-        </select>
-        <button onclick="registrarGasto()">Registrar Gasto</button>
-
-        <h3>Filtrar Gastos</h3>
-        <input type="date" id="gasto-fecha-inicio">
-        <input type="date" id="gasto-fecha-fin">
-        <button onclick="listarGastosPorRango()">Buscar</button>
-
-        <h3>Gastos Listados</h3>
-        <div id="lista-gastos"></div>
-    </section>
-
-
-
-    <section class="pantalla" id="pantalla-comparacion">
-            <h2>Comparar Inventarios</h2>
-            <label>Fecha 1 (ej. 2025-07-14):</label>
-            <input type="date" id="fecha1">
-            <label>Fecha 2 (ej. 2025-07-15):</label>
-            <input type="date" id="fecha2">
-            <button onclick="compararInventarios(document.getElementById('fecha1').value, document.getElementById('fecha2').value)">Comparar</button>
-
-    </section>
-
-    <section class="pantalla" id="pantalla-inventarios-realizados">
-
-    <h2>Inventarios Realizados</h2>
-    <div id="lista-inventarios-realizados" style="display: flex; flex-wrap: wrap; gap: 10px;">
-
+        <div class="day-tile" onclick="selectDay('Martes')">
+            <div class="icon">💼</div>
+            <div class="day-name">Martes</div>
+            <div class="day-number">Día 2</div>
+        </div>
+        <div class="day-tile" onclick="selectDay('Miércoles')">
+            <div class="icon">⚡</div>
+            <div class="day-name">Miércoles</div>
+            <div class="day-number">Día 3</div>
+        </div>
+        <div class="day-tile" onclick="selectDay('Jueves')">
+            <div class="icon">🎯</div>
+            <div class="day-name">Jueves</div>
+            <div class="day-number">Día 4</div>
+        </div>
+        <div class="day-tile" onclick="selectDay('Viernes')">
+            <div class="icon">🎉</div>
+            <div class="day-name">Viernes</div>
+            <div class="day-number">Día 5</div>
+        </div>
+        <div class="day-tile" onclick="selectDay('Sábado')">
+            <div class="icon">🌟</div>
+            <div class="day-name">Sábado</div>
+            <div class="day-number">Día 6</div>
+        </div>
+        <div class="day-tile" onclick="selectDay('Domingo')">
+            <div class="icon">☀️</div>
+            <div class="day-name">Domingo</div>
+            <div class="day-number">Día 7</div>
+        </div>
     </div>
 
-    <div style="margin-top: 20px;">
-        <h3>Comparar Inventarios</h3>
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-            <label>Inventario Inicio:</label>
-            <select id="inventario-inicio"></select>
+    <script>
+        function selectDay(day) {
+            console.log('Día seleccionado:', day);
+            // Aquí puedes agregar la lógica que necesites al seleccionar un día
+            // Por ejemplo, navegar a otra página o mostrar contenido
+        }
 
-            <label>Inventario Fin:</label>
-            <select id="inventario-fin"></select>
-
-            <button onclick="compararInventariosPorID(
-                document.getElementById('inventario-inicio').value,
-                document.getElementById('inventario-fin').value
-            )">
-                Comparar Inventarios Seleccionados
-            </button>
-        </div>
-
-        <div id="resultado-comparacion" style="margin-top: 20px;"></div>
-    </div>
-    </section>
-
-    <button onclick="borrarBaseDeDatos()" style="display: none;">Borrar Base de Datos</button>
-
-    <nav class="mobile-nav">
-        <ul style="display: contents;">
-            <li class="nav-item">
-                <a href="#pantalla-gastos" class="nav-link" data-target="pantalla-gastos">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 1v22M5 12h14"></path>
-                    </svg>
-                    <span>Gastos</span>
-                </a>
-            </li> 
-            <li class="nav-item">
-                <a href="#pantalla-inventario" class="nav-link" data-target="pantalla-inventariomain">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                        <line x1="9" y1="15" x2="15" y2="15"></line>
-                        <line x1="9" y1="19" x2="15" y2="19"></line>
-                        <polyline points="7 11 9 13 13 9"></polyline>
-                    </svg>
-                    <span>Inventario</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="#pantalla-productos" class="nav-link" data-target="pantalla-productos">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                    </svg>
-                    <span>Productos</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="#pantalla-movimientos" class="nav-link" data-target="pantalla-movimientos">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="17" y1="7" x2="7" y2="17"></line>
-                        <polyline points="17 17 7 17 7 7"></polyline>
-                        <line x1="7" y1="7" x2="17" y2="17"></line>
-                        <polyline points="7 17 17 17 17 7"></polyline>
-                    </svg>
-                    <span>Movimientos</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="#pantalla-comparacion" class="nav-link" data-target="pantalla-inventarios-realizados">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="12" y1="20" x2="12" y2="10"></line>
-                        <line x1="18" y1="20" x2="18" y2="4"></line>
-                        <line x1="6" y1="20" x2="6" y2="16"></line>
-                    </svg>
-                    <span>Comparar</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
-    <footer style="
-        background: #222;
-        color: #fff;
-        text-align: center;
-        padding: 16px 0;
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        font-size: 1rem;
-        z-index: 100;
-        box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
-    ">
-        <p style="margin: 0;">© 2025 Inventario Heladería</p>
-    </footer>
+        // Prevenir zoom en doble tap en iOS
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
+    <script src="/js/register-sw.js"></script>
 </body>
 </html>
