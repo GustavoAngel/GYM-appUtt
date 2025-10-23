@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="theme-color" content="#2196F3">
+    <title>Mi PWA</title>
+</head>
+<body>
+     <div class="week-container">
+        <div class="day-tile" onclick="selectDay('Lunes')">
+            <div class="icon">🌅</div>
+            <div class="day-name">Lunes</div>
+            <div class="day-number">Día 1</div>
+        </div>
+        <div class="day-tile" onclick="selectDay('Martes')">
+            <div class="icon">💼</div>
+            <div class="day-name">Martes</div>
+            <div class="day-number">Día 2</div>
+        </div>
+        <div class="day-tile" onclick="selectDay('Miércoles')">
+            <div class="icon">⚡</div>
+            <div class="day-name">Miércoles</div>
+            <div class="day-number">Día 3</div>
+        </div>
+        <div class="day-tile" onclick="selectDay('Jueves')">
+            <div class="icon">🎯</div>
+            <div class="day-name">Jueves</div>
+            <div class="day-number">Día 4</div>
+        </div>
+        <div class="day-tile" onclick="selectDay('Viernes')">
+            <div class="icon">🎉</div>
+            <div class="day-name">Viernes</div>
+            <div class="day-number">Día 5</div>
+        </div>
+        <div class="day-tile" onclick="selectDay('Sábado')">
+            <div class="icon">🌟</div>
+            <div class="day-name">Sábado</div>
+            <div class="day-number">Día 6</div>
+        </div>
+        <div class="day-tile" onclick="selectDay('Domingo')">
+            <div class="icon">☀️</div>
+            <div class="day-name">Domingo</div>
+            <div class="day-number">Día 7</div>
+        </div>
+    </div>
+
+    <script>
+        function selectDay(day) {
+            console.log('Día seleccionado:', day);
+            // Aquí puedes agregar la lógica que necesites al seleccionar un día
+            // Por ejemplo, navegar a otra página o mostrar contenido
+        }
+
+        // Prevenir zoom en doble tap en iOS
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
+    <script src="/js/register-sw.js"></script>
+</body>
+</html>
